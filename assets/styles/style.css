@@ -1,0 +1,600 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+body {
+    background-color: white;
+    height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*-------NAV----------------------------------------------------------- */
+.navContainer{
+    width: 100%;
+    height: 56px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vh;
+}
+/*  LOGO  */
+.logo{
+    width: 172px;
+}
+.logoContainer{
+    display: flex;
+    align-items: center;
+}
+/*  BUTTON  */
+.navMenuButton{
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navMenuButton:hover{
+    background-color: rgba(178, 10, 88, 0.415);
+    border-radius: 12px;
+}
+.navMenuButtonIcon{
+    width: 30px;
+    height: 30px;
+}
+/*  ITEMS  */
+.navMenuContainer{
+    background-color: white;
+    border-top: 3px solid rgb(178, 010, 089);
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    flex-direction: column;
+    position: fixed;
+    gap: 10px;
+    top: 56px;
+    left: 100%;
+    transition: left 0.3s ease-in-out;
+}
+.navMenuAction{
+    left: 0;
+}
+.navMenuLink, .navMenuLinkActive{
+    color: black;
+    text-decoration: none;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*-------HEADER-------------------------------------------------------- */
+.pageContainer{
+    background-color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vh;
+    border-bottom: 3px solid rgb(178, 010, 089);
+}
+.headerButton{
+    width: 30px;
+}
+.headerNoneButton{
+    opacity: 0;
+}
+h1{
+    color: black;
+    font-size: 30px;
+    font-weight: 700;
+    padding-bottom: 8px;
+}
+
+/*-------MAIN---------------------------------------------------------- */
+main{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.mainFormContainer{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0 8px 0 0;
+    gap: 6px;
+}
+
+/*  ITEMS  */
+.checkboxsForm{
+    background-color: white;
+    width: 50%;
+    border-radius: 0 0 12px 12px;
+    border: 5px solid white;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    flex-direction: column;
+    position: fixed;
+    gap: 10px;
+    top: 178px;
+    right: 110%;
+    transition: right 0.3s ease-in-out;
+    box-shadow: 3px 5px 5px rgba(178, 10, 89, 0.6);
+}
+.checkboxButtonAction{
+    right: 50%;
+}
+
+/*  BUTTON  */
+.checkboxButton{
+    width: 50%;
+    height: 40px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 3px solid rgb(178, 010, 089);
+    border-radius: 12px;
+    color: black;
+}
+
+/*  CHECKBOX  */
+.check {
+    display: inline-block;
+    cursor: pointer;
+    color: black;
+    position: relative;
+    padding: 6px 4px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    
+}
+.check:hover {
+    background: rgba(178, 10, 89, 0.6);
+    color: white;
+}
+input[type=checkbox] {
+    display: none;
+}
+input[type=checkbox]:checked + .check {
+    background: rgb(178, 10, 89);
+    color: #fff;
+    padding: 10px 4px;
+}
+
+/*  SEARCHBOX  */
+.SearchBox-input {
+    border: none;
+    background: none;
+    outline: 0;
+}
+.SearchBox-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.SearchBox-input::placeholder {
+    color:black;
+}
+.SearchBox {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    border-radius: 12px;
+    background-color: white;
+    border: 3px solid rgb(178, 010, 089);
+    height: 40px;
+}
+.SearchBox-input {
+    padding-left: 32px;
+    padding-right: 10px;
+    width: 100%;
+    color: black;
+    text-align: center;
+}
+.SearchBox-button {
+    display: flex;
+    width: 50px;
+    background-color: rgb(178, 10, 89);
+}
+.SearchBox-icon {
+    height: 26px;
+    filter: invert(100%);
+    margin: auto;
+    color: #fff;
+}
+
+/*-------CARD---------------------------------------------------------- */
+.cardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3vh;
+    padding: 3vh;
+}
+.notEvent{
+    height: 410px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-weight: 700;
+    font-size: 40px;
+    text-shadow: 1px 1px 6px rgb(178, 010, 089);
+}
+.card {
+    width: 300px;
+    height: 410px;
+    display: flex;
+    border: 1px solid black;
+    flex-direction: column;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+}
+.card:hover {
+    box-shadow: 3px 5px 5px rgba(178, 10, 89, 0.6);
+    position: relative;
+    
+    top: -3px;
+    left: -3px;
+}
+.imageCard {
+    height: 90%;
+    width: 90%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.imageContainer {
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.textContainer {
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh;
+}
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2vh;
+}
+.buttonCard {
+    width: 100px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: rgb(178, 10, 89);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+}
+h3 {
+    font-weight: 800;
+    font-size: 24px;
+}
+
+/*-------DETAILS------------------------------------------------------- */
+.detailsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3vh;
+    padding: 4vh;
+}
+.detailCard{
+    width: 400px;
+    height: 580px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 10px;
+}
+.imgDetailsContainer{
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imageDetails{
+    height: 98%;
+    width: 98%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.textDetailsContainer{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh;
+}
+.estimatedCapacity{
+    display: flex;
+    gap: 50px;
+}
+.buttonDetailsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2vh;
+}
+.buttonDetails {
+    width: 100px;
+    height: 40px;
+    border-radius: 12px;
+    background-color: rgb(178, 10, 89);
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: none;
+}
+.buttonDetailsContainer > p, .bond{
+    font-weight: 800;
+    font-size: 18px;
+}
+.textDetailsContainer > p, .capacity > p, .assistance > p{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+main > h2{
+    background-color: rgb(178, 010, 089);
+}
+
+/*-------FOOTER-------------------------------------------------------- */
+
+footer {
+    background-color: rgb(178, 10, 89);
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 18vh;
+}
+.socialLogos{
+    width: 35px;
+    filter: invert(100%);
+}
+.socialsContainer{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.github{
+    text-decoration: none;
+}
+h4{
+    color: white;
+    font-size: 22px;
+    padding-bottom: 8px;
+}
+
+
+/*-------MEDIA QUERY--------------------------------------------------- */
+@media (min-width: 992px){
+
+    /*  NAV  */
+    .logo{
+        width: 130px;
+    }
+    .navMenuButton{
+        display: none;
+    }
+    .navContainer{
+        width: 100%;
+        height: 52px;
+        padding: 0 10%;
+        align-items: center;
+        justify-content: space-around;
+        overflow: hidden;
+    }
+    .navMenuContainer{
+        position: relative;
+        left: 0;
+        top: 0;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: flex-end;
+        border: none;
+    }
+    .navMenuContainer::before{
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    .navMenuItem{
+        position: relative;
+        padding: 0px 4px;
+    }
+    .active{
+        border: 3px solid rgb(178, 010, 089);
+        border-bottom-color: white;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    .active::before{
+        content: '';
+        border: 3px solid rgb(178, 010, 089);
+        width: 6000px;
+        height: 20px;
+        position: absolute;
+        border-bottom-right-radius: 15px;
+        border-width: 0 3px 3px 0;
+        bottom: -3px;
+        left: -6003px;
+        box-shadow: 9px 0 0 white;
+    }
+    .active::after{
+        content: '';
+        border: 3px solid rgb(178, 010, 089);
+        width: 6000px;
+        height: 20px;
+        position: absolute;
+        border-bottom-left-radius: 15px;
+        border-width: 0 0 3px 3px;
+        bottom: -3px;
+        right: -6003px;
+        box-shadow: -9px 0 0 white;
+    }
+    .navMenuLink:hover{
+        background-color: rgba(178, 010, 089, 0.415);
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        color: white;
+    }
+
+    /*  HEADER  */
+    .pageContainer{
+        border-top: none;
+        border-bottom: none;
+    }
+
+    /*  MAIN FORM  */
+    .mainFormContainer{
+        width: 90%;
+        height: 60px;
+        justify-content: space-around;
+        padding: 0;
+        gap: 0;
+    }
+    .checkboxsForm{
+        background-color: white;
+        width: 100%;
+        border: none;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        flex-direction: row;
+        position: relative;
+        gap: 10px;
+        top: 0px;
+        right: 0;
+        transition: right 0.3s ease-in-out;
+        box-shadow: none;
+    }
+    .checkboxButton{
+        display: none;
+    }
+    .SearchBox {
+        display: flex;
+        justify-content: flex-end;
+        width: 350px;
+        height: 40px;
+    }
+
+    /*  CARD  */
+    .cardContainer {
+        max-width: 1024px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 3vh;
+        padding: 3vh;
+    }
+    .card {
+        width: 230px;
+        height: 345px;
+        display: flex;
+        flex-direction: column;
+    }
+    h3 {
+        font-weight: 800;
+        font-size: 18px;
+    }
+    .textContainer > p{
+        font-size: 15px;
+    }
+    .notEvent{
+        height: 345px;
+        font-size: 60px;
+    }
+
+    /* DETAILS */
+    .detailCard{
+        width: 800px;
+        height: 400px;
+        flex-direction: row;
+    }
+    .imgDetailsContainer{
+        height: 90%;
+        width: 60%;
+    }
+    .imageDetails{
+        height: 98%;
+        width: 98%;
+    }
+    .textDetailsContainer{
+        height: 90%;
+        width: 40%;
+    }
+    .textDetailsContainer > h3{
+        font-weight: 800;
+        font-size: 24px;
+    }
+
+
+
+    /*  FOOTER  */
+    footer{
+        background-color: rgb(178, 10, 89);
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 80px;
+        flex-direction: row;
+    }
+}
