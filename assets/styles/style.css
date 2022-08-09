@@ -437,6 +437,43 @@ main > h2{
     border-radius: 12px;
 }
 
+/*-------TABLES-------------------------------------------------------- */
+.statsContainer {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 16px;
+    min-width: 400px;
+    
+}
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 16px;
+    min-width: 400px;
+}
+thead tr {
+    background-color: rgb(178, 010, 089);
+    color: #ffffff;
+    text-align: left;
+}
+th, td {
+    padding: 12px 15px;
+}
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+    font-weight: bold;
+    color: rgb(178, 010, 089);
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid rgb(178, 010, 089);
+}
+
 /*-------FOOTER-------------------------------------------------------- */
 
 footer {
