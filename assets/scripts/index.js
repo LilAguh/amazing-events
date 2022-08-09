@@ -1,3 +1,4 @@
+var link = "http://amazing-events.herokuapp.com/api/events"
 /*-------VARIABLES----------------------------------------------------- */
 // BUTTON MENU
 let navMenuContainer = document.querySelector('.navMenuContainer')
@@ -6,12 +7,12 @@ let navMenuButton = document.querySelector('.navMenuButton')
 let checkboxsForm = document.querySelector('.checkboxsForm')
 let checkboxButton = document.querySelector('.checkboxButton')
 // DATA OF CARDS
-let allsCardData = data.events
+let allsCardData
 // CHECKBOX
 let checkboxs = document.getElementById('checkboxsImput');
 // SEARCH BAR
 let verifySearchbox = document.getElementById('searchBoxInput')
-let searchBoxButton = document.getElementById('searchBoxButton')
+
 // PRINT CARD 
 let cardContainer = document.getElementById('cardContainer')
 
@@ -26,6 +27,16 @@ navMenuButton.addEventListener('click', () => {
 checkboxButton.addEventListener('click', () => {
     checkboxsForm.classList.toggle('checkboxButtonAction')
 })
+
+
+loadData(link)
+function loadData(url) {
+    fetch(url).then(request => request.json()).then(data => {
+        allsCardData = data.events
+        printCheckboxes(allsCardData, checkboxs)
+        createCard(allsCardData, cardContainer)
+    })
+}
 
 
 
@@ -111,7 +122,7 @@ function createCard(cardsToShow, container) {
 
 
 /*-------CHEACKING THE DATA OF FILTERS--------------------------------- */
-searchBoxButton.addEventListener('click', () => {
+verifySearchbox.addEventListener('keyup', () => {
     let searchData = searchBoxFilter(allsCardData, verifySearchbox.value)
     let filteredData = verifyCheckboxs(searchData)
     createCard(filteredData, cardContainer)
@@ -124,6 +135,3 @@ checkboxs.addEventListener('change', () => {
 })
 
 
-printCheckboxes(allsCardData, checkboxs)
-
-createCard(allsCardData, cardContainer)

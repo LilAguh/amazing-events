@@ -119,10 +119,9 @@ function dateFilter(cardsToShow, currentDay) {
         .filter(e => e.date < currentDay);
     return pastEvent
 }
-console.log(dateFilter(allsCardData, currentDay))
 
 /*-------CHEACKING THE DATA OF FILTERS--------------------------------- */
-searchBoxButton.addEventListener('click', () => {
+verifySearchbox.addEventListener('keyup', () => {
     let searchData = searchBoxFilter(allsCardData, verifySearchbox.value)
     let filteredData = verifyCheckboxs(searchData)
     createCard(filteredData, cardContainer)

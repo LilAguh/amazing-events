@@ -1,3 +1,4 @@
+var link = "http://amazing-events.herokuapp.com/api/events"
 /*-------NAV BUTTON---------------------------------------------------- */
 let navMenuContainer = document.querySelector('.navMenuContainer');
 let navMenuButton = document.querySelector('.navMenuButton');
@@ -8,12 +9,20 @@ navMenuButton.addEventListener('click', () => {
 
 
 /*-------PRINT DETAILS------------------------------------------------- */
-let info = data.events
+let info
 let queryString = location.search
 let params = new URLSearchParams(queryString)
-let id = parseInt(params.get("id"))
-let detailsID = info.find(events => events._id == id)
+let id = params.get("id")
 let detailsContainer = document.getElementById('detailsContainer')
+
+loadData(link)
+function loadData(url) {
+    fetch(url).then(request => request.json()).then(data => {
+        info = data.events
+        let detailsID = info.find(events => events._id == id)
+        createDetailsCard(detailsID, detailsContainer)
+    })
+}
 
 
 function createDetailsCard(CardID, container) {
@@ -47,4 +56,3 @@ function createDetailsCard(CardID, container) {
         `
     container.appendChild(card)
 }
-createDetailsCard(detailsID, detailsContainer)
