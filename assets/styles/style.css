@@ -387,6 +387,56 @@ main > h2{
     background-color: rgb(178, 010, 089);
 }
 
+/*-------CONTACT------------------------------------------------------- */
+.contactContainer{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 18px;
+}
+.contactForm{
+    height: 490px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.contactImput{
+    outline: none;
+    border: none;
+    height: 40px;
+    font-size: 18px;
+    width: 300px;
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 12px;
+}
+
+.contactLabel{
+    font-weight: 600;
+    font-size: 20px;
+}
+.buttonContact{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.contactTextarea{
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 18px;
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 12px;
+}
+
 /*-------FOOTER-------------------------------------------------------- */
 
 footer {
@@ -585,11 +635,28 @@ h4{
         font-size: 24px;
     }
 
-
-
+    /* CONTACT */
+    .contactContainer{
+        height: 500px;
+        padding: 0;
+    }
+    .contactForm{
+        max-height: 100%;
+        gap: 12px;
+        padding: 2px;
+    }
+    .contactImput{
+        height: 40px;
+        width: 40vmax;
+    }
+    
+    .contactTextarea{
+        width: 40vmax;
+        height: 136px;
+    }
     /*  FOOTER  */
     footer{
-        background-color: rgb(178, 10, 89);
+        background-color: rgb(178, 010, 089);
         width: 100%;
         display: flex;
         justify-content: space-evenly;
