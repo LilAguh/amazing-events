@@ -1,3 +1,4 @@
+var link = "http://amazing-events.herokuapp.com/api/events"
 /*-------VARIABLES----------------------------------------------------- */
 // BUTTON MENU
 let navMenuContainer = document.querySelector('.navMenuContainer')
@@ -6,7 +7,7 @@ let navMenuButton = document.querySelector('.navMenuButton')
 let checkboxsForm = document.querySelector('.checkboxsForm')
 let checkboxButton = document.querySelector('.checkboxButton')
 // DATA OF CARDS
-let allsCardData = data.events
+let allsCardData
 // CHECKBOX
 let checkboxs = document.getElementById('checkboxsImput');
 // SEARCH BAR
@@ -15,7 +16,7 @@ let searchBoxButton = document.getElementById('searchBoxButton')
 // PRINT CARD 
 let cardContainer = document.getElementById('cardContainer')
 // DATE
-let currentDay = data.currentDate
+let currentDay
 
 /*-------NAV BUTTON---------------------------------------------------- */
 
@@ -29,6 +30,16 @@ checkboxButton.addEventListener('click', () => {
     checkboxsForm.classList.toggle('checkboxButtonAction')
 })
 
+
+loadData(link)
+function loadData(url) {
+    fetch(url).then(request => request.json()).then(data => {
+        allsCardData = data.events
+        currentDay = data.currentDate
+        printCheckboxes(dateFilter(allsCardData, currentDay), checkboxs)
+        createCard(dateFilter(allsCardData, currentDay), cardContainer)
+    })
+}
 
 
 /*-------CHECKBOXS----------------------------------------------------- */
@@ -122,19 +133,14 @@ function dateFilter(cardsToShow, currentDay) {
 
 /*-------CHEACKING THE DATA OF FILTERS--------------------------------- */
 verifySearchbox.addEventListener('keyup', () => {
-    let searchData = searchBoxFilter(allsCardData, verifySearchbox.value)
+    let searchData = searchBoxFilter(dateFilter(allsCardData, currentDay), verifySearchbox.value)
     let filteredData = verifyCheckboxs(searchData)
     createCard(filteredData, cardContainer)
 })
 
 checkboxs.addEventListener('change', () => {
-    let checkboxSelectedFilter = verifyCheckboxs(allsCardData)
+    let checkboxSelectedFilter = verifyCheckboxs(dateFilter(allsCardData, currentDay))
     let textFilter = searchBoxFilter(checkboxSelectedFilter, verifySearchbox.value)
     createCard(textFilter, cardContainer)
 })
 
-
-
-printCheckboxes(dateFilter(allsCardData, currentDay), checkboxs)
-
-createCard(dateFilter(allsCardData, currentDay), cardContainer)
