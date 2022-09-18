@@ -1,4 +1,4 @@
-var link = "http://amazing-events.herokuapp.com/api/events"
+var link = "../../JSON-data.json"
 /*-------NAV BUTTON---------------------------------------------------- */
 let navMenuContainer = document.querySelector('.navMenuContainer');
 let navMenuButton = document.querySelector('.navMenuButton');
