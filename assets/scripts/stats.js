@@ -1,4 +1,4 @@
-var link = "http://amazing-events.herokuapp.com/api/events"
+var link = "../../JSON-data.json"
 /*-------VARIABLES----------------------------------------------------- */
 // BUTTON MENU
 let navMenuContainer = document.querySelector('.navMenuContainer')
@@ -16,80 +16,84 @@ let largerCapacity = document.getElementById('largerCapacity')
 let upcommingCategories = document.getElementById('upcommingCategories')
 let pastCategories = document.getElementById('pastCategories')
 
-let events = []
-let currentDay = []
-let attendance = []
-let upcoming = []
-let past = []
+let eventsData
+let currentDay
+let attendance
+let upcomingEvent
+let pastEvent
+let dataOfAssitance = []
+
 
 loadData(link)
-
 function loadData(url) {
-    fetch(url).then(request => request.json()).then(data => {
-        events = data.events
-        currentDay = data.currentDate
-        upcoming = events.filter(e => e.date >= currentDay)
-        past = events.filter(e => e.date <= currentDay)
-        printRow(events)
-        shortPercentage(events)
-        incomeAndAssistance(events)
-        tableStats(events, upcommingCategories)
-        tableStats(past, pastCategories)
-    })
+    fetch(url)
+        .then(request => request.json())
+        .then(data => {
+            eventsData = data.events
+            currentDay = data.currentDate
+            dateFilter(eventsData, currentDay)
+            largerCapacityEvent(eventsData)
+            assistancePercentage(pastEvent)
+            // rowData(eventsData)
+            // shortPercentage(eventsData)
+            printTables(upcomingEvent, upcommingCategories)
+            printTables(pastEvent, pastCategories)
+        })
 }
 
-function shortPercentage(event) {
-    event.forEach(element => {
-        if (element.assistance != undefined) {
-            attendanceCalc = Math.round(((element.assistance) * 100) / element.capacity)
-            attendance.push([element.name, attendanceCalc])
-        }
-    })
-    attendance.sort(function (a, b) {
-        return b[1] - a[1]
-    })
-    lowPersentage.innerText = (attendance[attendance.length - 1]) + ' %'
-    highPercentage.innerText = (attendance[0]) + ' %'
+function dateFilter(arrayEvents, currentDay) {
+    pastEvent = arrayEvents.filter(e => e.date < currentDay)
+    upcomingEvent = arrayEvents.filter(e => e.date >= currentDay)
 }
 
-function printRow(array) {
-    array.sort(function (a, b) {
-        return b.capacity - a.capacity
+function assistancePercentage(arrayEvents) {
+    arrayEvents.forEach(e => {
+        assistanceCalc = (e.assistance * 100) / e.capacity
+        roundAssistance = (Math.round(assistanceCalc))
+        dataOfAssitance.push({ "roundAssistance": roundAssistance, "name": e.name })
     })
-
-    largerCapacity.innerText = (array[0].name) + ': ' + (array[0].capacity)
+    dataOfAssitance.sort((prevEvent, nextEvent) => nextEvent.roundAssistance - prevEvent.roundAssistance)
+    lowPersentage.innerText = dataOfAssitance[dataOfAssitance.length - 1].name + ": " + dataOfAssitance[dataOfAssitance.length - 1].roundAssistance + "%"
+    highPercentage.innerText = dataOfAssitance[0].name + ": " + dataOfAssitance[0].roundAssistance + "%"
 }
 
-function incomeAndAssistance(array) {
+function largerCapacityEvent(arrayEvents) {
+    arrayEvents.sort((prevEvent, nextEvent) => nextEvent.capacity - prevEvent.capacity)
+    largerCapacity.innerText = (arrayEvents[0].name) + ': ' + (arrayEvents[0].capacity)
+}
+
+function rowData(arrayEvents) {
     let categories = []
-    let arrayStats = []
-    array.forEach(e => {
-        if (!categories.includes(e.category)) {
-            categories.push(e.category)
+    let rowInformation = []
+    /* here filtering all events */
+    arrayEvents.map(events => {
+        if (!categories.includes(events.category)) {
+            categories.push(events.category)
         }
     })
-
-    categories.forEach(category => {
-        let eventosFilteredTable = array.filter(e => e.category == category)
-        let incomes = eventosFilteredTable.map(e => ((e.assistance ? e.assistance : e.estimate) * e.price))
-        let totalIncomes = incomes.reduce((actual, last) => actual = actual + last, 0)
-
-        let percentageAssistance = eventosFilteredTable.map(e => (e.assistance ? e.assistance : e.estimate) / e.capacity)
-        let averageAssistance = Math.round((percentageAssistance.reduce((actual, last) => actual = actual + last, 0) / percentageAssistance.length) * 100)
-        arrayStats.push([category, totalIncomes, averageAssistance])
+    categories.map(category => {
+        /* here filtering all events with categories, we multiply the assistance (or estimate) by the price, plus this prices and return one value */
+        let eventsFiltredByCategory = arrayEvents.filter(event => event.category === category) //<-- here filter the events by category 
+        let renueves = eventsFiltredByCategory.map(event => (event.assistance ? event.assistance : event.estimate) * event.price) // <-- once filtered, here we multiply the attendance (or estimate, in case it is a future event) by the price
+        let totalRenueves = renueves.reduce((actualValue, lastValue) => actualValue = actualValue + lastValue, 0)
+        /* */
+        let percentageOfTotalAssistance = eventsFiltredByCategory.map(event => (event.assistance ? event.assistance : event.estimate) / event.capacity)
+        let totalAssistance = ((percentageOfTotalAssistance.reduce((actualValue, lastValue) => actualValue = actualValue + lastValue, 0) / percentageOfTotalAssistance.length) * 100).toFixed(2)
+        rowInformation.push([category, "$" + totalRenueves, totalAssistance + "%"])
     })
-    return arrayStats
+    return rowInformation
 }
 
-function tableStats(array, container) {
-    let eventStats = incomeAndAssistance(array)
-    eventStats.forEach(eventStats => {
-        let fila = document.createElement('tr')
-        fila.innerHTML = `   
-        <td>${eventStats[0]}</td>
-        <td>$ ${eventStats[1]}</td>
-        <td>${eventStats[2]}%</td>
+function printTables(arrayEvents, container) {
+    let eventStats = rowData(arrayEvents)
+    console.log(eventStats)
+    eventStats?.forEach(event => {
+        let row = document.createElement('tr')
+        row.innerHTML = `
+        <td>${event[0]}</td>
+        <td>${event[1]}</td>
+        <td>${event[2]}</td>
         `
-        container.appendChild(fila)
+        container.appendChild(row)
     })
 }
