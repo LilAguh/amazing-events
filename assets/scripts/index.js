@@ -1,4 +1,4 @@
-var link = "../../JSON-data.json"
+var link = "JSON-data.json"
 /*-------VARIABLES----------------------------------------------------- */
 // BUTTON MENU
 let navMenuContainer = document.querySelector('.navMenuContainer')
